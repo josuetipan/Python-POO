@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Auto :
     def __init__(self, marca, modelo, anio, kilometraje=0):
         self.marca = marca
@@ -32,6 +34,45 @@ class Auto :
             print("Ya estoy usado")
         elif self.kilometraje > 100000:
             print("¡Ya déjame descansar por favor!")
+    
+    @classmethod
+    def auto_nuevo(cls, modelo):
+        anio_actual = datetime.now().year
+        return cls("Toyota", modelo, anio_actual)
+    
+    @staticmethod
+    def comparar_kilometraje(auto1, auto2):
+        return auto1.kilometraje == auto2.kilometraje
+    
+    @classmethod
+    def auto_generico(cls):
+        return cls("Genérico", "Modelo Base", 2000)
+    
+    @staticmethod
+    def promedio_kilometraje(auto1, auto2):
+        return (auto1.kilometraje + auto2.kilometraje) / 2
+
+
+auto1 = Auto.auto_nuevo("Corolla")
+auto2 = Auto("Honda", "Civic", 2018, 50000)
+auto3 = Auto.auto_generico()
+
+# Mostrar información de los autos
+print("Información de los autos creados:")
+auto1.mostrar_informacion()
+auto2.mostrar_informacion()
+auto3.mostrar_informacion()
+
+# Comparar kilometraje
+print("\n¿Auto1 y Auto2 tienen el mismo kilometraje?")
+print("Sí" if Auto.comparar_kilometraje(auto1, auto2) else "No")
+
+# Calcular promedio de kilometraje
+promedio = Auto.promedio_kilometraje(auto1, auto2)
+print(f"\nPromedio de kilometraje entre Auto1 y Auto2: {promedio:.2f} km")
+
+
+
 
 # Crear un objeto Auto
 mi_auto = Auto("Toyota", "Corolla", 2015)
@@ -64,3 +105,4 @@ mi_auto.realizar_viaje(30000)
 print("\nEstado del auto:")
 mi_auto.estado_auto()
 
+ 
