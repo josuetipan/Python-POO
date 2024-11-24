@@ -1,7 +1,4 @@
-
-
 import random
-
 
 class Laptop:
     def __init__(self,marca,procesador,memoria,costo = 500, impuestos = 10):
@@ -16,6 +13,23 @@ class Laptop:
     
     def descuento(self, descuento):
         return (self.costo * descuento)/100
+    
+    def realizar_diagnostico_sistema(self):
+        diagnostico = {
+            "Marca": f"{self.marca}",
+            "Procesador": f"{self.procesador}",
+            "Memoria": "OK" if self.memoria >= 8 else "aumnetar memoria RAM",
+            "Bateria": "OK" if random.choice([True,False]) else "Cambiar de bateria"
+        }
+        return diagnostico
+    def realizar_informe_uso(self):
+        resultado_informe = {
+            "tipo":"Generica",
+            "Uso Recomendado": "Tareas cotidianas",
+            "Horas de uso": 5,
+            "Diagostioo actual": self.realizar_diagnostico_sistema()
+        }
+        return resultado_informe
     
     @staticmethod
     def comparar_costo(laptop1,laptop2):
@@ -38,14 +52,12 @@ class Laptop_Business(Laptop):
         self.duracion_bateria = duracion_bateria
 
     def realizar_diagnostico_sistema(self):
-        # Obtener diagnóstico básico de la clase base
-        diagnostico = super().realizar_diagnostico_sistema()
-        # Añadir diagnósticos específicos para laptops empresariales
-        diagnostico.update({
-            "almacenamiento_funcional": True,  # Supongamos que siempre pasa
-            "bateria_salud_optima": random.choice([True, False]),
-            "actualizacion_antivirus": random.choice([True, False])
-        })
+        diagnostico = {
+            "Marca": f"{self.marca}",
+            "Procesador": f"{self.procesador}",
+            "Memoria": "OK" if self.memoria >= 8 else "aumnetar memoria RAM",
+            "Bateria": "OK" if random.chioce([True,False]) else "Cambiar de bateria"
+        }
         return diagnostico
 
     def verificar_conectividad_red(self):
@@ -55,6 +67,17 @@ class Laptop_Business(Laptop):
             "latencia_aceptable": random.choice([True, False])
         }
         return conectividad
+    
+    
+    
+    def realizar_informe_uso(self):
+        resultado_informe = {
+            "tipo":"Generica",
+            "Uso Recomendado": "Tareas cotidianas",
+            "Horas de uso": 5,
+            "Diagostioo actual": self.realizar_diagnostico_sistema()
+        }
+        return resultado_informe
 
 # Ejemplo de uso
 laptop_empresarial = Laptop_Business(
